@@ -8,9 +8,12 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.maps.GeoApiContext;
 import com.google.maps.GeocodingApi;
 import com.google.maps.GeocodingApiRequest;
+import com.google.maps.model.GeocodingResult;
 
 import br.com.stoom.geolocalizacao.Geolocalizacao;
 import org.slf4j.Logger;
@@ -18,7 +21,7 @@ import org.slf4j.LoggerFactory;
 
 @Entity
 @Table(name = "pessoa")
-public class Endereco implements Geolocalizacao {
+public class Endereco{
 	
 	public Endereco(@NotNull Long id, @NotNull String streetName, @NotNull Long number, String complement,
 			@NotNull String neighbourhood, @NotNull String city, @NotNull String state, @NotNull String country,
@@ -164,11 +167,6 @@ public class Endereco implements Geolocalizacao {
 		this.longitude = longitude;
 	}
 
-	@Override
-	public Endereco localizaGeolocalizacao(Integer longitude, Integer latitude) {
-		if (latitude == null || longitude == null) {
-	        LOGGER.debug("latitude/longitude must not be null in order for geolocation to proceed");
-	        return null;
-	    }
-	}
 }
+
+
